@@ -1,86 +1,111 @@
-// Messaggio iniziale nella console
-console.log("Inizio esecuzione");
+// Avvio del programma
+console.log("Applicazione avviata");
 
 // Data corrente
 let d = new Date();
 
-// Mostra la data nella console
-console.log(d);
+console.log("Data corrente:", d);
 
-// Mostra il giorno del mese
+// Mostra il giorno corrente
 document.getElementById("saluto2").innerHTML += d.getDate();
 
-// Array che conterrà i valori RGB
+// Array per memorizzare i valori RGB
 let colori = [];
 
 function elabora() {
 
-    // Legge il numero inserito
-    let numero = Number(document.getElementById("inNumber").value);
+    console.log("--------------------------------");
+    console.log("Pulsante ELABORA premuto");
 
-    // Legge il testo inserito
-    let testo = document.getElementById("inText").value;
+    // Lettura numero
+    let numero = Number(
+        document.getElementById("inNumber").value
+    );
 
-    // Mostra il testo nell'output
-    document.getElementById("outText2").innerHTML = testo;
+    // Lettura testo
+    let testo =
+        document.getElementById("inText").value;
 
-    // Pulisce eventuali errori precedenti
-    document.getElementById("error").innerHTML = "";
+    console.log("Numero inserito:", numero);
+    console.log("Testo inserito:", testo);
 
-    // Controlla che il numero sia valido
+    // Mostra il testo inserito
+    document.getElementById("outText2").innerHTML =
+        testo;
+
+    // Controllo validità
     if (numero >= 0 && numero <= 255) {
 
-        // Aggiunge il numero all'array
+        console.log("Numero valido");
+
+        // Inserisce il numero nell'array
         colori.push(numero);
 
-        // Mostra il numero inserito
+        console.log("Array aggiornato:", colori);
+
         document.getElementById("outText").innerHTML =
             "Hai inserito il numero " + numero;
 
-        // Mostra tutti i numeri inseriti
         document.getElementById("outText").innerHTML +=
-            "<br>I colori inseriti sono: " + colori.join(", ");
+            "<br>I colori inseriti sono: " +
+            colori.join(", ");
 
-        // Mostra l'array nella console
-        console.log(colori);
-
-        // Quando sono presenti 3 valori RGB
+        // Quando vengono inseriti tre valori
         if (colori.length == 3) {
 
-            // Crea il colore RGB
-            let newColor = `rgb(${colori[0]}, ${colori[1]}, ${colori[2]})`;
+            console.log("Tre valori RGB inseriti");
 
-            console.log(newColor);
+            let newColor =
+                `rgb(${colori[0]}, ${colori[1]}, ${colori[2]})`;
 
-            // Cambia il colore del testo
-            document.getElementById("outText2").style.color = newColor;
+            console.log("Colore generato:", newColor);
+
+            document.getElementById("outText2").style.color =
+                newColor;
+
+            console.log("Colore applicato al testo");
         }
 
     } else {
 
-        // Messaggio di errore
-        document.getElementById("error").innerHTML =
-            "Inserisci un numero compreso tra 0 e 255";
+        console.log("ERRORE: numero non valido");
+
+        alert(
+            "Inserisci un numero compreso tra 0 e 255!"
+        );
+
+        // Svuota gli input
+        document.getElementById("inNumber").value = "";
+        document.getElementById("inText").value = "";
+
+        console.log("Input ripuliti");
     }
 }
 
-// Funzione di reset
 function reset() {
 
-    // Svuota gli input
+    console.log("--------------------------------");
+    console.log("Pulsante PULISCI premuto");
+
+    // Svuota input
     document.getElementById("inNumber").value = "";
     document.getElementById("inText").value = "";
 
-    // Ripristina gli output
-    document.getElementById("outText").innerHTML = "Output";
-    document.getElementById("outText2").innerHTML = "Output2";
+    // Svuota output
+    document.getElementById("outText").innerHTML = "";
+    document.getElementById("outText2").innerHTML = "";
 
-    // Ripristina il colore nero
-    document.getElementById("outText2").style.color = "black";
+    // Ripristina il colore
+    document.getElementById("outText2").style.color =
+        "black";
 
-    // Svuota il messaggio di errore
+    // Svuota errori
     document.getElementById("error").innerHTML = "";
 
-    // Svuota l'array
+    // Svuota array
     colori = [];
+
+    console.log("Array colori svuotato");
+    console.log("Output ripuliti");
+    console.log("Reset completato");
 }
