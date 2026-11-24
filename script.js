@@ -1,87 +1,86 @@
-// Scrive un messaggio nella console all'avvio del programma
+// Messaggio iniziale nella console
 console.log("Inizio esecuzione");
 
-// Crea un oggetto con data e ora correnti
+// Data corrente
 let d = new Date();
 
 // Mostra la data nella console
 console.log(d);
 
-// Aggiunge il giorno del mese corrente al contenuto di saluto2
+// Mostra il giorno del mese
 document.getElementById("saluto2").innerHTML += d.getDate();
 
-// Array che conterrà i valori RGB inseriti dall'utente
+// Array che conterrà i valori RGB
 let colori = [];
 
-function elabora(){
+function elabora() {
 
-    // Legge il numero inserito e lo converte in Number
+    // Legge il numero inserito
     let numero = Number(document.getElementById("inNumber").value);
 
-    // Legge il testo inserito dall'utente
+    // Legge il testo inserito
     let testo = document.getElementById("inText").value;
 
-    // Visualizza il testo nell'output
+    // Mostra il testo nell'output
     document.getElementById("outText2").innerHTML = testo;
 
-    // Controlla che il numero sia compreso tra 0 e 255
-    if(numero >= 0 && numero <= 255){
+    // Pulisce eventuali errori precedenti
+    document.getElementById("error").innerHTML = "";
 
-        // Inserisce il numero nell'array colori
+    // Controlla che il numero sia valido
+    if (numero >= 0 && numero <= 255) {
+
+        // Aggiunge il numero all'array
         colori.push(numero);
 
         // Mostra il numero inserito
         document.getElementById("outText").innerHTML =
-        "Hai inserito il numero " + numero;
+            "Hai inserito il numero " + numero;
 
         // Mostra tutti i numeri inseriti
         document.getElementById("outText").innerHTML +=
-        "<br>I colori inseriti sono: " + colori.join(", ");
+            "<br>I colori inseriti sono: " + colori.join(", ");
 
-        // Visualizza l'array nella console
+        // Mostra l'array nella console
         console.log(colori);
 
-        // Quando sono stati inseriti 3 valori RGB
-        if(colori.length == 3){
+        // Quando sono presenti 3 valori RGB
+        if (colori.length == 3) {
 
-            // Crea il colore RGB utilizzando i valori dell'array
-            let newColor =
-            `rgb(${colori[0]}, ${colori[1]}, ${colori[2]})`;
+            // Crea il colore RGB
+            let newColor = `rgb(${colori[0]}, ${colori[1]}, ${colori[2]})`;
 
-            // Imposta il nuovo colore del testo
+            console.log(newColor);
+
+            // Cambia il colore del testo
             document.getElementById("outText2").style.color = newColor;
-
         }
 
     } else {
 
-        // Mostra un messaggio di errore se il valore non è valido
+        // Messaggio di errore
         document.getElementById("error").innerHTML =
-        "Il numero inserito non va bene";
-
+            "Inserisci un numero compreso tra 0 e 255";
     }
-
 }
 
-// Funzione per ripristinare lo stato iniziale
-function reset(){
+// Funzione di reset
+function reset() {
 
-    // Svuota il campo numerico
+    // Svuota gli input
     document.getElementById("inNumber").value = "";
-
-    // Svuota il campo di testo
     document.getElementById("inText").value = "";
 
-    // Ripristina il primo output
+    // Ripristina gli output
     document.getElementById("outText").innerHTML = "Output";
-
-    // Ripristina il secondo output
     document.getElementById("outText2").innerHTML = "Output2";
 
-    // Ripristina il colore del testo a nero
+    // Ripristina il colore nero
     document.getElementById("outText2").style.color = "black";
 
-    // Svuota l'array dei colori
-    colori = [];
+    // Svuota il messaggio di errore
+    document.getElementById("error").innerHTML = "";
 
+    // Svuota l'array
+    colori = [];
 }
